@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 require("dotenv").config({ path: "./.env" });
 
 const AuthRoutes = require("./routes/AuthRoutes");
+const CryptoRoutes = require("./routes/CryptoRoutes");
 
 const app = express();
 
@@ -17,7 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use("/v0", AuthRoutes);
-
+app.use("/v0", CryptoRoutes);
 app.listen(PORT, () => {
   console.log(`Connected on port : ${PORT}`);
 });
