@@ -1,0 +1,9 @@
+.custome-input {
+  outline: 0;
+  box-shadow: 0 !important;
+}
+
+.customer-input:focus {
+  outline: 0;
+  box-shadow: 0 !important;
+}
