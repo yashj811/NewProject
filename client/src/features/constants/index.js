@@ -8,3 +8,4 @@ export const CRYPTO_LOADING = "CRYPTO_LOADING";
 
 export const GET_BASIC_INFO = "GET_BASIC_INFO";
 export const GET_RESUME_ERRORS = "GET_RESUME_ERRORS";
+export const RESUME_LOADING = " RESUME_LOADING";

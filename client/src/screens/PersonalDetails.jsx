@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Input from "../components/Input";
@@ -6,26 +6,39 @@ import { useForm } from "react-hook-form";
 import Layout from "../layouts/Layout";
 import Button from "../components/Button";
 import { GetBasicInfo } from "../features/actions/ResumeActions";
-import { GET_RESUME_ERRORS } from "../features/constants";
+import ErrorModal from "../components/ErrorModal";
 
 const PersonalDetails = () => {
   const { handleSubmit, register } = useForm();
   const dispatch = useDispatch();
-  const errors = useSelector((state) => state.resume.error);
+  const { error, loading } = useSelector((state) => state.resume);
   const history = useHistory();
+  const [show, setShow] = useState(false);
 
   const onSubmit = async (data) => {
     await dispatch(GetBasicInfo(data));
-    if (!errors) {
-      history.push("/register");
-    }
+    // history.push("/register");
   };
+
+  useEffect(() => {
+    if (error) {
+      setShow(true);
+    }
+  }, [error]);
   return (
     <Layout>
       <>
         {" "}
         <form onSubmit={handleSubmit(onSubmit)}>
-          {errors && errors.message}
+          {error && (
+            <ErrorModal
+              size="sm"
+              show={show}
+              handleShow={() => setShow(true)}
+              error={error}
+              handleClose={() => setShow(false)}
+            />
+          )}
           <div className="mb-3">
             <Input
               name="firstname"
@@ -61,7 +74,11 @@ const PersonalDetails = () => {
               register={register("mobile")}
             />
           </div>
-          <Button type="submit" text="Proceed" />
+          <Button
+            type="submit"
+            text="Proceed"
+            loading={loading == true ? "true" : "false"}
+          />
         </form>
       </>
     </Layout>
