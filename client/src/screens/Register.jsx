@@ -1,9 +1,10 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import Layout from "../layouts/Layout";
 import Input from "../components/Input";
+import Button from "../components/Button";
 import { RegisterUser } from "../features/actions/UserActions";
-import { useState } from "react";
 
 const Register = () => {
   const { register, handleSubmit } = useForm();
@@ -40,10 +41,7 @@ const Register = () => {
               label="Passowrd"
               register={register("password")}
             />
-
-            <button type="submit" className="btn btn-primary">
-              Submit
-            </button>
+            <Button type="submit" text="Register" />
           </form>
         </div>
       )}

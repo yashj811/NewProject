@@ -1,4 +1,4 @@
-import { REGISTER, LOGIN } from "../constants/index";
+import { REGISTER } from "../constants/index";
 
 const initialState = {
   email: "",
