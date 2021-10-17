@@ -21,7 +21,7 @@ const PersonalDetails = () => {
 
   const onSubmit = async (data) => {
     await dispatch(GetBasicInfo(data));
-    if (!error.status) {
+    if (!error) {
       history.push("/register");
     }
   };

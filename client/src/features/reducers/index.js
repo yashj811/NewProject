@@ -5,7 +5,7 @@ import CryptoReducer from "./CryptoReducer";
 import ResumeReducer from "./ResumeReducer";
 
 const reducers = combineReducers({
-  user: AuthReducer,
+  auth: AuthReducer,
   error: ErrorReducer,
   crypto: CryptoReducer,
   resume: ResumeReducer,

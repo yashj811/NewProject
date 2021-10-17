@@ -1,14 +1,31 @@
-import { REGISTER } from "../constants/index";
+import { REGISTER, AUTH_ERRORS, AUTH_LOADING } from "../constants/index";
 
 const initialState = {
-  email: "",
-  password: "",
+  user: { email: "", password: "" },
+  error: null,
+  loading: false,
 };
 
 const AuthReducer = (state = initialState, action) => {
   switch (action.type) {
     case REGISTER:
-      return { ...state, ...action.payload };
+      const newUser = {
+        user: action.payload.data,
+        error: null,
+        loading: false,
+      };
+      return Object.assign({}, state, newUser);
+    case AUTH_LOADING:
+      const loadingState = {
+        loading: true,
+      };
+      return Object.assign({}, state, loadingState);
+    case AUTH_ERRORS:
+      const errorState = {
+        error: action.payload,
+        loading: false,
+      };
+      return Object.assign({}, state, errorState);
     default:
       return state;
   }

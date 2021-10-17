@@ -9,7 +9,7 @@ const Button = (props) => {
       disabled={disabled ? disabled : false}
       className="btn btn-primary w-100 my-2 rounded"
     >
-      {!loading ? "Loading..." : text}
+      {loading ? "Loading..." : text}
     </BSButton>
   );
 };
