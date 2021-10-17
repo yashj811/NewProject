@@ -23,5 +23,15 @@ app.use("/v0", CryptoRoutes);
 app.use("/v0", ResumeRoutes);
 
 app.listen(PORT, () => {
-  console.log(`Connected on port : ${PORT}`);
+  mongoose.connect(
+    DB_URL,
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    },
+    () => {
+      console.log("Connected to db...");
+      console.log(`Connected on port : ${PORT}`);
+    }
+  );
 });

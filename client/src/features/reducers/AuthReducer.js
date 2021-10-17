@@ -1,4 +1,9 @@
-import { REGISTER, AUTH_ERRORS, AUTH_LOADING } from "../constants/index";
+import {
+  REGISTER,
+  AUTH_ERRORS,
+  SET_AUTH_LOADING,
+  UNSET_AUTH_LOADING,
+} from "../constants/index";
 
 const initialState = {
   user: { email: "", password: "" },
@@ -12,14 +17,18 @@ const AuthReducer = (state = initialState, action) => {
       const newUser = {
         user: action.payload.data,
         error: null,
-        loading: false,
       };
       return Object.assign({}, state, newUser);
-    case AUTH_LOADING:
+    case SET_AUTH_LOADING:
       const loadingState = {
         loading: true,
       };
       return Object.assign({}, state, loadingState);
+    case UNSET_AUTH_LOADING:
+      const unsetLoadingState = {
+        loading: false,
+      };
+      return Object.assign({}, state, unsetLoadingState);
     case AUTH_ERRORS:
       const errorState = {
         error: action.payload,

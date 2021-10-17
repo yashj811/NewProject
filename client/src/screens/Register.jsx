@@ -18,6 +18,7 @@ const Register = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [show, setShow] = useState(false);
+  console.log(loading);
 
   useEffect(() => {
     if (error) {
