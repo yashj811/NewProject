@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const JWT_KEY = process.env.JWT_KEY.replace(/\\n/gm, "\n");
 
 const auth = (req, res, next) => {
-  const token = req.headers["x-access-token"];
+  const token = req.headers["x-auth-token"];
 
   if (!token) {
     return res

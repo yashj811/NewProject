@@ -1,7 +1,6 @@
 export const REGISTER = "REGISTER";
 export const LOGIN = "LOGIN";
-export const SET_AUTH_LOADING = "SET_AUTH_LOADING";
-export const UNSET_AUTH_LOADING = "UNSET_AUTH_LOADING";
+export const AUTH_LOADING = "AUTH_LOADING";
 export const AUTH_ERRORS = "AUTH_ERRORS";
 
 export const SET_ERROR = "SET_ERROR";

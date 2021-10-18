@@ -1,6 +1,8 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import PrivateRoute from "./routes/PrivateRoute";
 import Home from "./screens/Home";
 import Register from "./screens/Register";
+import Login from "./screens/Login";
 import PersonalDetails from "./screens/PersonalDetails";
 import Crypto from "./screens/Crypto";
 
@@ -13,8 +15,13 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/register" component={Register} />
-          <Route exact path="/crypto" component={Crypto} />
-          <Route exact path="/personal-details" component={PersonalDetails} />
+          <Route exact path="/login" component={Login} />
+          <PrivateRoute exact path="/crypto" component={Crypto} />
+          <PrivateRoute
+            exact
+            path="/personal-details"
+            component={PersonalDetails}
+          />
         </Switch>
       </Router>
     </div>

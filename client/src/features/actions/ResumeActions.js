@@ -1,9 +1,5 @@
 import axios from "axios";
-import {
-  GET_BASIC_INFO,
-  GET_RESUME_ERRORS,
-  RESUME_LOADING,
-} from "../constants";
+import { GET_RESUME_ERRORS, RESUME_LOADING } from "../constants";
 
 export const GetBasicInfo = (data) => {
   return async (dispatch) => {
