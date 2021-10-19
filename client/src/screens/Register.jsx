@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import Layout from "../layouts/Layout";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import { RegisterUser } from "../features/actions/UserActions";
-import ErrorModal from "../components/ErrorModal";
-import { useHistory } from "react-router";
+// import { useHistory } from "react-router";
 
 const Register = () => {
   const {
@@ -14,23 +13,14 @@ const Register = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { error, loading } = useSelector((state) => state.auth);
+  const { error } = useSelector((state) => state.error);
+  const { loading } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-  const history = useHistory();
-  const [show, setShow] = useState(false);
-  console.log(loading);
-
-  useEffect(() => {
-    if (error) {
-      setShow(true);
-    }
-  }, [error]);
+  // const history = useHistory();
+  console.log(error);
 
   const onSubmit = async (data) => {
     await dispatch(RegisterUser(data));
-    if (!error) {
-      history.push("/crypto");
-    }
   };
   return (
     <Layout>
@@ -40,15 +30,6 @@ const Register = () => {
       >
         <div className="card p-4 col-lg-4 col-md-6 col-sm-10 col-xs-10 border">
           <form onSubmit={handleSubmit(onSubmit)}>
-            {error && (
-              <ErrorModal
-                size="sm"
-                show={show}
-                handleShow={() => setShow(true)}
-                error={error}
-                handleClose={() => setShow(false)}
-              />
-            )}
             <Input
               name="email"
               type="email"
@@ -79,7 +60,12 @@ const Register = () => {
                 },
               })}
             />
-            <Button type="submit" text="Register" loading={loading} />
+            <Button
+              type="submit"
+              text="Register"
+              disabled={loading}
+              loading={loading}
+            />
           </form>
         </div>
       </div>

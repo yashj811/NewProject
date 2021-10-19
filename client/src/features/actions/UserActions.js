@@ -1,5 +1,5 @@
 import axios from "axios";
-import { REGISTER, AUTH_LOADING, AUTH_ERRORS, LOGIN } from "../constants/index";
+import { REGISTER, AUTH_LOADING, LOGIN, SET_ERROR } from "../constants/index";
 
 export const RegisterUser = (data) => {
   return async (dispatch) => {
@@ -16,8 +16,12 @@ export const RegisterUser = (data) => {
       });
     } catch (error) {
       await dispatch({
-        type: AUTH_ERRORS,
+        type: SET_ERROR,
         payload: error.response.data,
+      });
+      await dispatch({
+        type: AUTH_LOADING,
+        payload: false,
       });
     }
   };
@@ -37,8 +41,12 @@ export const LoginUser = (data) => {
       });
     } catch (error) {
       await dispatch({
-        type: AUTH_ERRORS,
+        type: SET_ERROR,
         payload: error.response.data,
+      });
+      await dispatch({
+        type: AUTH_LOADING,
+        payload: false,
       });
     }
   };

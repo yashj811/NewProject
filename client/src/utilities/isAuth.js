@@ -1,5 +1,7 @@
+import getToken from "./getToken";
+
 const isAuth = () => {
-  const token = localStorage.getItem("x-auth-token");
+  const token = getToken();
 
   if (token) {
     return true;
