@@ -7,6 +7,7 @@ require("dotenv").config({ path: "./.env" });
 const AuthRoutes = require("./routes/AuthRoutes");
 const CryptoRoutes = require("./routes/CryptoRoutes");
 const ResumeRoutes = require("./routes/ResumeRoutes");
+const BlogRoutes = require("./routes/BlogRoutes");
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/v0", AuthRoutes);
 app.use("/v0", CryptoRoutes);
 app.use("/v0", ResumeRoutes);
+app.use("/v0/blog", BlogRoutes);
 
 app.listen(PORT, () => {
   mongoose.connect(
