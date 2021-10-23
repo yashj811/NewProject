@@ -14,6 +14,7 @@ import { useEffect } from "react";
 import { getToken } from "./utilities/Token";
 import { SetUser } from "./features/actions/UserActions";
 import { useDispatch } from "react-redux";
+import Blogs from "./screens/Blogs";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -47,6 +48,7 @@ const App = () => {
               component={PersonalDetails}
             />
             <PrivateRoute exact path="/create-blog" component={CreateBlog} />
+            <PrivateRoute exact path="/blogs" component={Blogs} />
           </Switch>
         </Router>
       </HandleError>
