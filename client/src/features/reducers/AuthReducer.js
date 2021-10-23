@@ -1,22 +1,34 @@
-import { REGISTER, LOGIN, AUTH_LOADING } from "../constants/index";
+import { removeToken, setToken } from "../../utilities/Token";
+import {
+  REGISTER,
+  LOGIN,
+  AUTH_LOADING,
+  LOGOUT,
+  SET_USER,
+} from "../constants/index";
 
 const initialState = {
-  user: { email: "", password: "" },
+  user: { email: "" },
   loading: false,
 };
 
 const AuthReducer = (state = initialState, action) => {
   switch (action.type) {
     case REGISTER:
+      return Object.assign({}, state, { loading: false });
+    case LOGIN:
+      const token = action.payload.token;
+      setToken(token);
+      return Object.assign({}, state, { loading: false });
+    case LOGOUT:
+      removeToken();
+      return Object.assign({}, state, { loading: false });
+    case SET_USER:
       const newUser = {
-        user: action.payload.data,
+        user: action.payload,
         loading: false,
       };
       return Object.assign({}, state, newUser);
-    case LOGIN:
-      const token = action.payload.token;
-      localStorage.setItem("x-auth-token", token);
-      return Object.assign({}, state, { loading: false });
     case AUTH_LOADING:
       const loadingState = {
         loading: action.payload,

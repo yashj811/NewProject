@@ -42,9 +42,11 @@ const HandleError = ({ children }) => {
             className="d-flex align-items-center justify-content-center text-danger mt-4 mx-4 p-4"
             style={{ height: "30px", fontSize: "18px" }}
           >
-            {error.status}
+            {error.status ? error.status : 500}
             {" : "}
-            {error.message}
+            {error.message
+              ? error.message
+              : "Something went wrong.Please try again later."}
           </div>
           <button
             className="btn bg-danger text-white m-4"

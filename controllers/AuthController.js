@@ -72,7 +72,7 @@ exports.login = async (req, res) => {
 
       const isMatch = await isPasswordMatch(password, user.password);
       if (isMatch) {
-        const token = await signToken(email, password);
+        const token = await signToken(email);
         return res.status(200).json({
           status: 200,
           success: true,

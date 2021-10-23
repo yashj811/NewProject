@@ -1,4 +1,4 @@
-import getToken from "./getToken";
+import { getToken } from "./Token";
 
 const isAuth = () => {
   const token = getToken();

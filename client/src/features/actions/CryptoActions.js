@@ -1,6 +1,6 @@
 import axios from "axios";
 import { CRYPTO_LOADING, GET_CRYPTO, SET_ERROR } from "../constants/index";
-import getToken from "../../utilities/getToken";
+import { getToken } from "../../utilities/Token";
 
 const config = {
   headers: {
