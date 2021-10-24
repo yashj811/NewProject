@@ -1,19 +1,23 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import jwt from "jsonwebtoken";
 import PrivateRoute from "./routes/PrivateRoute";
+import HandleError from "./layouts/ErrorHandler";
+
+import "./App.css";
+import "react-toastify/dist/ReactToastify.css";
+
+import { SetUser } from "./features/actions/UserActions";
+import { getToken } from "./utilities/Token";
+
 import Home from "./screens/Home";
 import Register from "./screens/Register";
 import Login from "./screens/Login";
 import PersonalDetails from "./screens/PersonalDetails";
 import Crypto from "./screens/Crypto";
-
-import "./App.css";
-import HandleError from "./layouts/ErrorHandler";
 import CreateBlog from "./screens/CreateBlog";
-import { useEffect } from "react";
-import { getToken } from "./utilities/Token";
-import { SetUser } from "./features/actions/UserActions";
-import { useDispatch } from "react-redux";
 import Blogs from "./screens/Blogs";
 
 const App = () => {
@@ -51,6 +55,17 @@ const App = () => {
             <PrivateRoute exact path="/blogs" component={Blogs} />
           </Switch>
         </Router>
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar
+          newestOnTop
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable={false}
+          pauseOnHover={false}
+        />
       </HandleError>
     </div>
   );

@@ -7,6 +7,7 @@ import {
   SET_USER,
   LOGOUT,
 } from "../constants/index";
+import { toast } from "react-toastify";
 
 export const RegisterUser = (data) => {
   return async (dispatch) => {
@@ -21,6 +22,7 @@ export const RegisterUser = (data) => {
         type: REGISTER,
         payload: res.data.data,
       });
+      toast.success("Registered successfully !");
     } catch (error) {
       await dispatch({
         type: SET_ERROR,
@@ -46,6 +48,7 @@ export const LoginUser = (data) => {
         type: LOGIN,
         payload: res.data.data,
       });
+      toast.success("Logged in successfully !");
     } catch (error) {
       await dispatch({
         type: SET_ERROR,

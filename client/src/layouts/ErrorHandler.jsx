@@ -46,7 +46,7 @@ const HandleError = ({ children }) => {
             {" : "}
             {error.message
               ? error.message
-              : "Something went wrong.Please try again later."}
+              : "Something went wrong. Please try again later."}
           </div>
           <button
             className="btn bg-danger text-white m-4"
