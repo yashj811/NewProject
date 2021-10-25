@@ -8,6 +8,7 @@ import {
   LOGOUT,
 } from "../constants/index";
 import { toast } from "react-toastify";
+import SetUserFunc from "../../utilities/setUser";
 
 export const RegisterUser = (data) => {
   return async (dispatch) => {
@@ -48,6 +49,7 @@ export const LoginUser = (data) => {
         type: LOGIN,
         payload: res.data.data,
       });
+      SetUserFunc();
       toast.success("Logged in successfully !");
     } catch (error) {
       await dispatch({

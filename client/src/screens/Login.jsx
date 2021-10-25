@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import Layout from "../layouts/Layout";
 import Input from "../components/Input";
 import Button from "../components/Button";
@@ -12,11 +13,17 @@ const Login = () => {
     formState: { errors },
   } = useForm();
   const dispatch = useDispatch();
-  const { loading } = useSelector((state) => state.auth);
+  const history = useHistory();
+  const { loading, user } = useSelector((state) => state.auth);
 
   const onSubmit = async (data) => {
     await dispatch(LoginUser(data));
+    history.push("/");
   };
+
+  if (user.email) {
+    history.push("/");
+  }
   return (
     <Layout>
       <div

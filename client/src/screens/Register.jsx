@@ -1,11 +1,11 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import Layout from "../layouts/Layout";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import { RegisterUser } from "../features/actions/UserActions";
-// import { useHistory } from "react-router";
 
 const Register = () => {
   const {
@@ -13,15 +13,17 @@ const Register = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { error } = useSelector((state) => state.error);
-  const { loading } = useSelector((state) => state.auth);
+  const { loading, user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-  // const history = useHistory();
-  console.log(error);
+  const history = useHistory();
 
   const onSubmit = async (data) => {
     await dispatch(RegisterUser(data));
   };
+
+  if (user.email) {
+    history.push("/");
+  }
   return (
     <Layout>
       <div

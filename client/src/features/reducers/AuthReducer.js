@@ -22,7 +22,8 @@ const AuthReducer = (state = initialState, action) => {
       return Object.assign({}, state, { loading: false });
     case LOGOUT:
       removeToken();
-      return Object.assign({}, state, { loading: false });
+
+      return Object.assign({}, state, initialState);
     case SET_USER:
       const newUser = {
         user: action.payload,

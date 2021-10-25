@@ -9,8 +9,7 @@ import HandleError from "./layouts/ErrorHandler";
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
 
-import { SetUser } from "./features/actions/UserActions";
-import { getToken } from "./utilities/Token";
+import SetUserFunc from "./utilities/setUser";
 
 import Home from "./screens/Home";
 import Register from "./screens/Register";
@@ -21,22 +20,9 @@ import CreateBlog from "./screens/CreateBlog";
 import Blogs from "./screens/Blogs";
 
 const App = () => {
-  const dispatch = useDispatch();
-  const token = getToken();
   useEffect(() => {
-    const setUserFunc = async () => {
-      if (token) {
-        jwt.verify(token, "yashjain121", function (err, decoded) {
-          if (err) {
-            return console.log(err);
-          }
-          dispatch(SetUser(decoded));
-        });
-      }
-    };
-
-    setUserFunc();
-  }, [token]);
+    SetUserFunc();
+  }, []);
   return (
     <div className="App">
       <HandleError>
