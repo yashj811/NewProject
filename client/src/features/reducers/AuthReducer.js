@@ -8,7 +8,7 @@ import {
 } from "../constants/index";
 
 const initialState = {
-  user: { email: "" },
+  user: {},
   loading: false,
 };
 

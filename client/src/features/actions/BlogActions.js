@@ -41,14 +41,15 @@ export const PublishBlog = (data) => {
 
 export const GetBlogs = () => {
   return async (dispatch) => {
+    dispatch({
+      type: BLOGS_LOADING,
+    });
     try {
       const res = await axios.get(
         "http://localhost:8080/v0/blog/blogs",
         config
       );
-      dispatch({
-        type: BLOGS_LOADING,
-      });
+
       dispatch({
         type: GET_BLOGS,
         payload: res.data.data,

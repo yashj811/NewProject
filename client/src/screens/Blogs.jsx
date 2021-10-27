@@ -18,7 +18,7 @@ const Blogs = () => {
     <Layout>
       <>
         {loading && <LoadingSpinner />}
-        {!loading && blogs ? (
+        {!loading && blogs && blogs.length > 0 && (
           <div className="row justify-content-center align-itmes-center m-3">
             {" "}
             {blogs.map((item, idx) => {
@@ -32,9 +32,8 @@ const Blogs = () => {
               );
             })}
           </div>
-        ) : (
-          "No items found."
         )}
+        {!loading && blogs && blogs.length < 1 && <>No items found.</>}
       </>
     </Layout>
   );

@@ -33,6 +33,19 @@ const Register = () => {
         <div className="card p-4 col-lg-4 col-md-6 col-sm-10 col-xs-10 border">
           <form onSubmit={handleSubmit(onSubmit)}>
             <Input
+              name="username"
+              type="text"
+              label="Username"
+              error={errors.username}
+              register={register("username", {
+                required: "Username is required.",
+                maxLength: {
+                  value: 30,
+                  message: "Max length can be 30.",
+                },
+              })}
+            />
+            <Input
               name="email"
               type="email"
               label="Email address"

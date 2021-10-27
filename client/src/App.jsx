@@ -18,6 +18,7 @@ import PersonalDetails from "./screens/PersonalDetails";
 import Crypto from "./screens/Crypto";
 import CreateBlog from "./screens/CreateBlog";
 import Blogs from "./screens/Blogs";
+import BlogView from "./screens/BlogView";
 
 const App = () => {
   useEffect(() => {
@@ -39,6 +40,7 @@ const App = () => {
             />
             <PrivateRoute exact path="/create-blog" component={CreateBlog} />
             <PrivateRoute exact path="/blogs" component={Blogs} />
+            <PrivateRoute exact path="/blogs/:id" component={BlogView} />
           </Switch>
         </Router>
         <ToastContainer

@@ -19,17 +19,17 @@ const Layout = ({ children }) => {
           <div className="container-fluid">
             <span className="navbar-brand mb-0 h1">Navbar</span>
             <div className="d-flex align-items-center justify-content-center ">
-              {user.email === "" && (
+              {!user.email && (
                 <Link to="/login">
                   <div className="nav-item text-light px-2">Login </div>
                 </Link>
               )}
-              {user.email === "" && (
+              {!user.email && (
                 <Link to="/register">
                   <div className="nav-item text-light px-2">Register </div>
                 </Link>
               )}
-              {user.email !== "" && (
+              {user.email && (
                 <div
                   className="nav-item text-light px-2"
                   onClick={handleLogout}
@@ -37,7 +37,7 @@ const Layout = ({ children }) => {
                   Logout{" "}
                 </div>
               )}
-              <Avatar name={user.email} size={35} round={true} />
+              <Avatar name={user.username} size={35} round={true} />
             </div>
           </div>
         </nav>

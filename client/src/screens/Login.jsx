@@ -15,10 +15,13 @@ const Login = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { loading, user } = useSelector((state) => state.auth);
+  const { error } = useSelector((state) => state.error);
 
   const onSubmit = async (data) => {
     await dispatch(LoginUser(data));
-    history.push("/");
+    // if (!error) {
+    //   history.push("/");
+    // }
   };
 
   if (user.email) {
