@@ -1,7 +1,7 @@
 const Blog = require("../models/BlogModel");
 
 exports.createBlog = async (req, res) => {
-  const { blogTitle, blogBody } = req.body;
+  const { blogTitle, blogBody, isPublic } = req.body;
 
   if (!blogTitle || !blogBody) {
     return res.status(400).json({
@@ -11,7 +11,11 @@ exports.createBlog = async (req, res) => {
     });
   }
 
-  const newBlog = new Blog({ title: blogTitle, body: blogBody });
+  const newBlog = new Blog({
+    title: blogTitle,
+    body: blogBody,
+    isPublic: isPublic ?? false,
+  });
 
   await newBlog.save((err, blog) => {
     if (err) {
@@ -57,12 +61,12 @@ exports.getAllBlogs = async (req, res) => {
   }
 };
 
-exports.getBlog = async (req, res) => {
-  const { id } = req.body;
+// exports.getBlog = async (req, res) => {
+//   const { id } = req.body;
 
-  if (!id) {
-    return res
-      .status(400)
-      .json({ status: 400, success: false, message: "No data available." });
-  }
-};
+//   if (!id) {
+//     return res
+//       .status(400)
+//       .json({ status: 400, success: false, message: "No data available." });
+//   }
+// };

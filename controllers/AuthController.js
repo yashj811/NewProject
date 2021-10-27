@@ -6,8 +6,8 @@ const { signToken } = require("../utilities/JWTTokenUtility");
 const User = require("../models/UserModel");
 
 exports.register = async (req, res) => {
-  const { email, password } = req.body;
-  if (!email || !password) {
+  const { email, password, username } = req.body;
+  if (!email || !password || !username) {
     return res.status(400).json({
       status: 400,
       success: false,
@@ -32,7 +32,11 @@ exports.register = async (req, res) => {
     }
 
     const hashedPassword = await getHashedPassword(password);
-    let newUser = new User({ email: email, password: hashedPassword });
+    let newUser = new User({
+      email: email,
+      password: hashedPassword,
+      username: username,
+    });
     await newUser.save((err, user) => {
       if (err) {
         return res.status(500).json({
@@ -72,7 +76,7 @@ exports.login = async (req, res) => {
 
       const isMatch = await isPasswordMatch(password, user.password);
       if (isMatch) {
-        const token = await signToken(email);
+        const token = await signToken(user);
         return res.status(200).json({
           status: 200,
           success: true,

@@ -1,17 +1,25 @@
 const mongoose = require("mongoose");
 
 const userSchema = mongoose.Schema({
+  username: {
+    type: String,
+    required: true,
+    trim: true,
+  },
   email: {
     type: String,
     required: true,
     unique: true,
     trim: true,
-    max: [30, "Email should be less than 30 characters."],
   },
   password: {
     type: String,
     required: true,
     trim: true,
+  },
+  role: {
+    type: Number,
+    default: 0, //      {0: user , 1: admin}
   },
 });
 

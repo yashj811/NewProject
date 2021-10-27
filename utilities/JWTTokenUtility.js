@@ -2,10 +2,11 @@ const jwt = require("jsonwebtoken");
 
 const JWT_KEY = process.env.JWT_KEY.replace(/\\n/gm, "\n");
 
-exports.signToken = (email, password) => {
+exports.signToken = (user) => {
   const data = {
-    email: email,
-    password: password,
+    email: user.email,
+    username: user.username,
+    role: user.role,
     iat: Math.floor(new Date() / 1000),
   };
   return new Promise((resolve, reject) => {
