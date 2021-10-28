@@ -1,6 +1,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
+const path = require("path");
 const mongoose = require("mongoose");
 require("dotenv").config({ path: "./.env" });
 
@@ -23,6 +24,13 @@ app.use("/v0", AuthRoutes);
 app.use("/v0", CryptoRoutes);
 app.use("/v0", ResumeRoutes);
 app.use("/v0/blog", BlogRoutes);
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
 
 app.listen(PORT, () => {
   mongoose.connect(

@@ -4,6 +4,7 @@ const {
 } = require("../utilities/HashPassword");
 const { signToken } = require("../utilities/JWTTokenUtility");
 const User = require("../models/UserModel");
+const { WelcomeMail } = require("../utilities/SendMails");
 
 exports.register = async (req, res) => {
   const { email, password, username } = req.body;
@@ -44,14 +45,23 @@ exports.register = async (req, res) => {
           success: false,
           message: "Please try again later.",
         });
-      } else {
-        return res.status(200).json({
-          status: 200,
-          success: true,
-          message: "User Registered.",
-        });
       }
     });
+    try {
+      await WelcomeMail(email, username);
+      return res.status(200).json({
+        status: 200,
+        success: true,
+        message: "User Registered.",
+      });
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({
+        status: 500,
+        success: false,
+        message: "Please try again later.",
+      });
+    }
   }
 };
 
