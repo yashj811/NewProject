@@ -21,7 +21,7 @@ export const PublishBlog = (data) => {
         type: BLOGS_LOADING,
       });
       const res = await axios.post(
-        "http://localhost:8080/v0/blog/create",
+        "https://obscure-gorge-71517.herokuapp.com/v0/blog/create",
         data,
         config
       );
@@ -46,7 +46,7 @@ export const GetBlogs = () => {
     });
     try {
       const res = await axios.get(
-        "http://localhost:8080/v0/blog/blogs",
+        "https://obscure-gorge-71517.herokuapp.com/v0/blog/blogs",
         config
       );
 

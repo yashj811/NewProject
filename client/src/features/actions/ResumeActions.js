@@ -7,7 +7,10 @@ export const GetBasicInfo = (data) => {
       dispatch({
         type: RESUME_LOADING,
       });
-      const res = await axios.post("http://localhost:8080/v0/register", data);
+      const res = await axios.post(
+        "https://obscure-gorge-71517.herokuapp.com/v0/register",
+        data
+      );
       console.log(res.data);
     } catch (error) {
       console.log(error.response.data);

@@ -11,7 +11,10 @@ const config = {
 export const GetCrypto = () => {
   return async (dispatch) => {
     try {
-      const res = await axios.get("http://localhost:8080/v0/crypto", config);
+      const res = await axios.get(
+        "https://obscure-gorge-71517.herokuapp.com/v0/crypto",
+        config
+      );
       dispatch({
         type: CRYPTO_LOADING,
       });
