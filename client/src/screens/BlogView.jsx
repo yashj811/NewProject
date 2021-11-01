@@ -30,14 +30,26 @@ const BlogView = () => {
               if (item._id === BlogId) {
                 return (
                   <div key={idx} className="">
-                    <PhotoPlaceholder width={300} height={300} />
+                    <PhotoPlaceholder
+                      className="shadow p-3 mb-5 background-card rounded"
+                      width={300}
+                      height={300}
+                    />
                     <div className="d-flex justify-content-between mt-4 my-2">
-                      <div className="font-family-bold">{item.title}</div>
-                      <div style={{ fontSize: "12px", color: "grey" }}>
+                      <div className="font-family-bold shadow p-3 mb-5 background-card rounded">
+                        {item.title}
+                      </div>
+                      <div
+                        className="shadow p-3 mb-5 background-card rounded"
+                        style={{ fontSize: "12px", color: "grey" }}
+                      >
                         {moment(item.createdAt).fromNow()}
                       </div>
                     </div>
-                    <div className="font-family-semibold"> {item.body}</div>
+                    <div className="font-family-semibold shadow p-3 mb-5 background-card rounded">
+                      {" "}
+                      {item.body}
+                    </div>
                   </div>
                 );
               }

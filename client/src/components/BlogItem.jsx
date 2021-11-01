@@ -6,7 +6,10 @@ const BlogItem = (props) => {
   const history = useHistory();
   const { blog } = props;
   return (
-    <div className="" onClick={() => history.push(`/blogs/${blog._id}`)}>
+    <div
+      className="shadow-lg p-3 mb-5  rounded background-card"
+      onClick={() => history.push(`/blogs/${blog._id}`)}
+    >
       <PhotoPlaceholder width={300} height={300} />
       <div className="d-flex justify-content-between  mt-2">
         <div className="">{blog.title}</div>

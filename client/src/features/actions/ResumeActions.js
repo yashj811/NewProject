@@ -1,4 +1,5 @@
 import axios from "axios";
+import { DOMAIN } from "../../utilities/Config";
 import { GET_RESUME_ERRORS, RESUME_LOADING } from "../constants";
 
 export const GetBasicInfo = (data) => {
@@ -7,10 +8,7 @@ export const GetBasicInfo = (data) => {
       dispatch({
         type: RESUME_LOADING,
       });
-      const res = await axios.post(
-        "https://obscure-gorge-71517.herokuapp.com/v0/register",
-        data
-      );
+      const res = await axios.post(`${DOMAIN}/v0/register`, data);
       console.log(res.data);
     } catch (error) {
       console.log(error.response.data);

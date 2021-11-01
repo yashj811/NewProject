@@ -9,6 +9,7 @@ import {
 } from "../constants/index";
 import { toast } from "react-toastify";
 import SetUserFunc from "../../utilities/setUser";
+import { DOMAIN } from "../../utilities/Config";
 
 export const RegisterUser = (data) => {
   return async (dispatch) => {
@@ -17,10 +18,7 @@ export const RegisterUser = (data) => {
       payload: true,
     });
     try {
-      const res = await axios.post(
-        "https://obscure-gorge-71517.herokuapp.com/v0/register",
-        data
-      );
+      const res = await axios.post(`${DOMAIN}/v0/register`, data);
 
       await dispatch({
         type: REGISTER,
@@ -47,10 +45,7 @@ export const LoginUser = (data) => {
       payload: true,
     });
     try {
-      const res = await axios.post(
-        "https://obscure-gorge-71517.herokuapp.com/v0/login",
-        data
-      );
+      const res = await axios.post(`${DOMAIN}/v0/login`, data);
       await dispatch({
         type: LOGIN,
         payload: res.data.data,

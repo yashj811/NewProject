@@ -7,6 +7,7 @@ import {
 } from "../constants/index";
 import { getToken } from "../../utilities/Token";
 import { toast } from "react-toastify";
+import { DOMAIN } from "../../utilities/Config";
 
 const config = {
   headers: {
@@ -20,11 +21,7 @@ export const PublishBlog = (data) => {
       dispatch({
         type: BLOGS_LOADING,
       });
-      const res = await axios.post(
-        "https://obscure-gorge-71517.herokuapp.com/v0/blog/create",
-        data,
-        config
-      );
+      const res = await axios.post(`${DOMAIN}/v0/blog/create`, data, config);
 
       dispatch({
         type: CREATE_BLOG,
@@ -45,10 +42,7 @@ export const GetBlogs = () => {
       type: BLOGS_LOADING,
     });
     try {
-      const res = await axios.get(
-        "https://obscure-gorge-71517.herokuapp.com/v0/blog/blogs",
-        config
-      );
+      const res = await axios.get(`${DOMAIN}/v0/blog/blogs`, config);
 
       dispatch({
         type: GET_BLOGS,

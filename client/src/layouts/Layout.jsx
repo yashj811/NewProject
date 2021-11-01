@@ -15,25 +15,27 @@ const Layout = ({ children }) => {
   return (
     <div>
       <>
-        <nav className="navbar navbar-dark bg-primary">
+        <nav
+          className="navbar "
+          style={{ backgroundColor: "whitesmoke", color: "#0066b2" }}
+        >
           <div className="container-fluid">
-            <span className="navbar-brand mb-0 h1">Navbar</span>
+            <Link to="/">
+              <span className="navbar-brand mb-0 h1">Home</span>
+            </Link>
             <div className="d-flex align-items-center justify-content-center ">
               {!user.email && (
                 <Link to="/login">
-                  <div className="nav-item text-light px-2">Login </div>
+                  <div className="nav-item  px-2">Login </div>
                 </Link>
               )}
               {!user.email && (
                 <Link to="/register">
-                  <div className="nav-item text-light px-2">Register </div>
+                  <div className="nav-item  px-2">Register </div>
                 </Link>
               )}
               {user.email && (
-                <div
-                  className="nav-item text-light px-2"
-                  onClick={handleLogout}
-                >
+                <div className="nav-item  px-2" onClick={handleLogout}>
                   Logout{" "}
                 </div>
               )}
@@ -41,9 +43,7 @@ const Layout = ({ children }) => {
             </div>
           </div>
         </nav>
-        <div className="" style={{ height: "90vh" }}>
-          {children}
-        </div>
+        <div className="">{children}</div>
       </>
     </div>
   );
